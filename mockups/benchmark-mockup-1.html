@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Research - Mockup 1: Card Grid Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .gradient-header { background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        .selected-card { border-color: #3b82f6; border-width: 3px; }
+        .checkbox-custom:checked { background-color: #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="gradient-header text-white py-8 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-2 text-blue-200 text-sm mb-2">
+                <span>Research</span>
+                <span>/</span>
+                <span>Prompt 1</span>
+            </div>
+            <h1 class="text-3xl font-bold mb-2">Benchmarking Study: Best-in-Class Simulation Centers</h1>
+            <p class="text-blue-100 max-w-3xl">Analysis of 11 leading hospital-based simulation centers with size, staffing, technology, funding, and outcomes data.</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Overview Stats Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                Industry Overview - Aggregated Benchmarks
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
+                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-blue-600">11</div>
+                    <div class="text-sm text-gray-600">Centers Analyzed</div>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-green-600">~30K</div>
+                    <div class="text-sm text-gray-600">Avg Sq Ft</div>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-purple-600">$15M</div>
+                    <div class="text-sm text-gray-600">Avg Investment</div>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-amber-600">10-15</div>
+                    <div class="text-sm text-gray-600">Avg Staff FTEs</div>
+                </div>
+                <div class="bg-rose-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-rose-600">18-24</div>
+                    <div class="text-sm text-gray-600">Months to Build</div>
+                </div>
+                <div class="bg-cyan-50 rounded-lg p-4 text-center">
+                    <div class="text-3xl font-bold text-cyan-600">10K+</div>
+                    <div class="text-sm text-gray-600">Avg Learners/Yr</div>
+                </div>
+            </div>
+
+            <!-- Mini Charts Row -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-sm font-semibold mb-3">Facility Size Distribution</h3>
+                    <canvas id="sizeChart" height="150"></canvas>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-sm font-semibold mb-3">Funding Model Breakdown</h3>
+                    <canvas id="fundingChart" height="150"></canvas>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-sm font-semibold mb-3">Maturity Level</h3>
+                    <canvas id="maturityChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Tool -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path>
+                    </svg>
+                    Compare Centers
+                </h2>
+                <div class="flex gap-2">
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">Compare Selected</button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200">Clear All</button>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">Select 2 or more centers below to compare them side-by-side</p>
+
+            <div id="selectedChips" class="flex flex-wrap gap-2 mb-4 min-h-[40px] p-2 bg-gray-50 rounded-lg">
+                <span class="text-gray-400 text-sm">No centers selected</span>
+            </div>
+        </div>
+
+        <!-- Benchmark Cards Grid -->
+        <h2 class="text-xl font-bold mb-4">Individual Center Profiles</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card 1: OSF Jump -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'osf')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-full">Mature</span>
+                        <span class="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">SSH Accredited</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-osf">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">OSF HealthCare - Jump Trading Simulation Center</h3>
+                    <p class="text-gray-500 text-sm mb-4">Peoria, IL | Est. 2013</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">168K</div>
+                            <div class="text-xs text-gray-500">Sq Ft</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$50M</div>
+                            <div class="text-xs text-gray-500">Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">50-100</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">1.1M+</div>
+                            <div class="text-xs text-gray-500">Learner Engagements</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                $180M economic impact to region
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Reduced hospital-acquired conditions
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                12,800+ K-12 students trained
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Atrium Health -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'atrium')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-full">Mature</span>
+                        <span class="px-2 py-1 bg-amber-500 text-white text-xs font-medium rounded-full">SSH Distinguished</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-atrium">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-green-600 to-teal-600"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Atrium Health - Carolinas Simulation Center</h3>
+                    <p class="text-gray-500 text-sm mb-4">Charlotte, NC | Est. 2007</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">Multi</div>
+                            <div class="text-xs text-gray-500">Site</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$10-15M</div>
+                            <div class="text-xs text-gray-500">Est. Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">20+</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">1000s</div>
+                            <div class="text-xs text-gray-500">Learners/Year</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Dual SSH/ACS Distinguished accreditation
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Regional Simulation Alliance leader
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Improved procedural skills & team decisions
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: NCH Herb Family -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'nch')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded-full">Scaling</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-nch">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">NCH Healthcare - Herb Family Sim Center</h3>
+                    <p class="text-gray-500 text-sm mb-4">Naples, FL | Est. 2020</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">12K</div>
+                            <div class="text-xs text-gray-500">Sq Ft</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$5-8M</div>
+                            <div class="text-xs text-gray-500">Est. Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">5-8</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">4,032</div>
+                            <div class="text-xs text-gray-500">Learners (2023)</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Doubled learner volume each year since 2021
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                18,689 training hours in 2023
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Improved patient satisfaction scores
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Sharp Prebys -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'sharp')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">Startup</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-sharp">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Sharp HealthCare - Prebys Innovation Center</h3>
+                    <p class="text-gray-500 text-sm mb-4">San Diego, CA | Est. 2023</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">70K</div>
+                            <div class="text-xs text-gray-500">Sq Ft Total</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$25-30M</div>
+                            <div class="text-xs text-gray-500">Est. Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">15-20</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">3K→10K</div>
+                            <div class="text-xs text-gray-500">Target Learners</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Supports 7,000 nurses system-wide
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                AI/VR Technology Immersion Lab
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                International knowledge exchange
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Riverside -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'riverside')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded-full">Scaling</span>
+                        <span class="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">SSH Accredited</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-riverside">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-rose-500 to-pink-600"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Riverside Health - Simulation Training Lab</h3>
+                    <p class="text-gray-500 text-sm mb-4">Newport News, VA | Est. 2020</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">8.4K</div>
+                            <div class="text-xs text-gray-500">Sq Ft</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$3-5M</div>
+                            <div class="text-xs text-gray-500">Est. Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">4</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">11.8K</div>
+                            <div class="text-xs text-gray-500">Learners (3yr)</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                20%+ improvement in skills checkoffs
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                4 projects at IMSH 2024 conference
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                Rapid SSH accreditation (3 years)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Parkview -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transition-all duration-300 cursor-pointer" onclick="toggleSelect(this, 'parkview')">
+                <div class="relative">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded-full">Scaling</span>
+                        <span class="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-full">Mobile Unit</span>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <input type="checkbox" class="w-5 h-5 rounded checkbox-custom" id="check-parkview">
+                    </div>
+                    <div class="h-3 bg-gradient-to-r from-emerald-500 to-green-600"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Parkview Health - Mirro Center Simulation Lab</h3>
+                    <p class="text-gray-500 text-sm mb-4">Fort Wayne, IN | Est. 2015</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-blue-600">4K</div>
+                            <div class="text-xs text-gray-500">Sq Ft + Mobile</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-green-600">$4-6M</div>
+                            <div class="text-xs text-gray-500">Est. Investment</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-purple-600">4-6</div>
+                            <div class="text-xs text-gray-500">Staff FTEs</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-center">
+                            <div class="text-xl font-bold text-amber-600">300+</div>
+                            <div class="text-xs text-gray-500">Sessions/Year</div>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h4 class="text-sm font-semibold mb-2">Key Outcomes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                42-ft mobile sim lab reaches rural areas
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                3D printing for patient-specific models
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-0.5">&#10003;</span>
+                                SSH and ACS dual accreditation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- View More Button -->
+        <div class="text-center mt-8">
+            <button class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium">
+                View All 11 Benchmark Centers
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Size Distribution Chart
+        new Chart(document.getElementById('sizeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['<5K', '5-10K', '10-20K', '20-50K', '50K+'],
+                datasets: [{
+                    data: [1, 3, 3, 2, 2],
+                    backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444']
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+
+        // Funding Model Chart
+        new Chart(document.getElementById('fundingChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Philanthropy', 'Hospital Budget', 'Grants', 'Mixed'],
+                datasets: [{
+                    data: [4, 5, 1, 1],
+                    backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6']
+                }]
+            },
+            options: {
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+            }
+        });
+
+        // Maturity Chart
+        new Chart(document.getElementById('maturityChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Startup', 'Scaling', 'Mature'],
+                datasets: [{
+                    data: [2, 5, 4],
+                    backgroundColor: ['#3b82f6', '#f59e0b', '#10b981']
+                }]
+            },
+            options: {
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+            }
+        });
+
+        // Toggle selection
+        function toggleSelect(card, id) {
+            const checkbox = document.getElementById('check-' + id);
+            checkbox.checked = !checkbox.checked;
+            card.classList.toggle('selected-card', checkbox.checked);
+            updateSelectedChips();
+        }
+
+        function updateSelectedChips() {
+            const container = document.getElementById('selectedChips');
+            const selected = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            if (selected.length === 0) {
+                container.innerHTML = '<span class="text-gray-400 text-sm">No centers selected</span>';
+            } else {
+                const names = { osf: 'OSF Jump', atrium: 'Atrium', nch: 'NCH', sharp: 'Sharp', riverside: 'Riverside', parkview: 'Parkview' };
+                const colors = { osf: 'bg-blue-100 text-blue-800', atrium: 'bg-green-100 text-green-800', nch: 'bg-yellow-100 text-yellow-800', sharp: 'bg-cyan-100 text-cyan-800', riverside: 'bg-rose-100 text-rose-800', parkview: 'bg-emerald-100 text-emerald-800' };
+
+                container.innerHTML = Array.from(selected).map(cb => {
+                    const id = cb.id.replace('check-', '');
+                    return `<span class="px-3 py-1 ${colors[id]} rounded-full text-sm font-medium">${names[id]}</span>`;
+                }).join('');
+            }
+        }
+    </script>
+</body>
+</html>
