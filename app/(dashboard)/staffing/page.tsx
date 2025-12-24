@@ -179,7 +179,7 @@ export default function StaffingPage() {
               <CardContent>
                 <div className="space-y-4">
                   {coreStaffingModel.map((position) => (
-                    <div key={position.id} className="p-4 rounded-lg border hover:bg-slate-50 transition-colors">
+                    <div key={position.id} className="p-4 rounded-lg border hover:bg-blue-50 hover:border-blue-200 transition-colors">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <h3 className="font-semibold">{position.role}</h3>

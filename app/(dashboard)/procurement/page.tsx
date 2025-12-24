@@ -28,8 +28,7 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  Legend
+  Cell
 } from "recharts"
 import {
   rfqCategories,
@@ -177,38 +176,46 @@ export default function ProcurementPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={weightChartData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={50}
-                        outerRadius={80}
-                        paddingAngle={2}
-                        dataKey="weight"
-                        label={({ percent }) => percent && percent >= 0.08 ? `${(percent * 100).toFixed(0)}%` : ''}
-                        labelLine={false}
-                      >
-                        {weightChartData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.fill} />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        formatter={(value: number) => `${value}%`}
-                        contentStyle={{ background: '#1e293b', border: '1px solid #475569', borderRadius: '8px' }}
-                      />
-                      <Legend
-                        layout="vertical"
-                        align="right"
-                        verticalAlign="middle"
-                        formatter={(value, entry: any) => (
-                          <span style={{ color: '#cbd5e1', fontSize: '12px' }}>{entry.payload.fullName}</span>
-                        )}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
+                <div className="flex flex-col items-center">
+                  {/* Chart container */}
+                  <div className="w-48 h-48">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={weightChartData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={35}
+                          outerRadius={65}
+                          paddingAngle={2}
+                          dataKey="weight"
+                        >
+                          {weightChartData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.fill} />
+                          ))}
+                        </Pie>
+                        <Tooltip
+                          formatter={(value: number) => `${value}%`}
+                          contentStyle={{ background: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#e2e8f0' }}
+                          itemStyle={{ color: '#e2e8f0' }}
+                          labelStyle={{ color: '#94a3b8' }}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                  {/* Legend below chart */}
+                  <div className="w-full mt-4 space-y-2">
+                    {weightChartData.map((entry, index) => (
+                      <div key={index} className="flex items-center gap-2 text-sm">
+                        <div
+                          className="w-3 h-3 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: entry.fill }}
+                        />
+                        <span className="text-slate-300 flex-1">{entry.fullName}</span>
+                        <span className="text-slate-400 font-medium">{entry.weight}%</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -367,7 +374,9 @@ export default function ProcurementPage() {
                       <Tooltip
                         formatter={(value: number) => `${value}%`}
                         labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
-                        contentStyle={{ background: '#1e293b', border: '1px solid #475569', borderRadius: '8px' }}
+                        contentStyle={{ background: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#e2e8f0' }}
+                          itemStyle={{ color: '#e2e8f0' }}
+                          labelStyle={{ color: '#94a3b8' }}
                       />
                       <Bar dataKey="percent" radius={[0, 4, 4, 0]}>
                         {paymentChartData.map((entry, index) => (

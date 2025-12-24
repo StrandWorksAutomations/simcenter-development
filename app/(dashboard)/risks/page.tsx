@@ -26,26 +26,26 @@ import {
   type RiskProbability
 } from "@/data/seed/risks"
 
-// Color mappings
+// Color mappings with dark mode support
 const impactColors: Record<RiskImpact, { bg: string; text: string; cell: string }> = {
-  low: { bg: "bg-green-100", text: "text-green-800", cell: "bg-green-50" },
-  medium: { bg: "bg-yellow-100", text: "text-yellow-800", cell: "bg-yellow-50" },
-  high: { bg: "bg-orange-100", text: "text-orange-800", cell: "bg-orange-50" },
-  critical: { bg: "bg-red-100", text: "text-red-800", cell: "bg-red-50" }
+  low: { bg: "bg-green-100 dark:bg-green-900/40", text: "text-green-800 dark:text-green-300", cell: "bg-green-50 dark:bg-green-900/20" },
+  medium: { bg: "bg-yellow-100 dark:bg-yellow-900/40", text: "text-yellow-800 dark:text-yellow-300", cell: "bg-yellow-50 dark:bg-yellow-900/20" },
+  high: { bg: "bg-orange-100 dark:bg-orange-900/40", text: "text-orange-800 dark:text-orange-300", cell: "bg-orange-50 dark:bg-orange-900/20" },
+  critical: { bg: "bg-red-100 dark:bg-red-900/40", text: "text-red-800 dark:text-red-300", cell: "bg-red-50 dark:bg-red-900/20" }
 }
 
 const probabilityColors: Record<RiskProbability, { bg: string; text: string }> = {
-  low: { bg: "bg-green-100", text: "text-green-800" },
-  medium: { bg: "bg-yellow-100", text: "text-yellow-800" },
-  high: { bg: "bg-red-100", text: "text-red-800" }
+  low: { bg: "bg-green-100 dark:bg-green-900/40", text: "text-green-800 dark:text-green-300" },
+  medium: { bg: "bg-yellow-100 dark:bg-yellow-900/40", text: "text-yellow-800 dark:text-yellow-300" },
+  high: { bg: "bg-red-100 dark:bg-red-900/40", text: "text-red-800 dark:text-red-300" }
 }
 
 const statusColors = {
-  identified: { bg: "bg-slate-100", text: "text-slate-800", icon: AlertTriangle },
-  mitigating: { bg: "bg-blue-100", text: "text-blue-800", icon: Clock },
-  resolved: { bg: "bg-green-100", text: "text-green-800", icon: CheckCircle2 },
-  accepted: { bg: "bg-purple-100", text: "text-purple-800", icon: Shield },
-  monitoring: { bg: "bg-amber-100", text: "text-amber-800", icon: Clock }
+  identified: { bg: "bg-slate-100 dark:bg-slate-700", text: "text-slate-800 dark:text-slate-200", icon: AlertTriangle },
+  mitigating: { bg: "bg-blue-100 dark:bg-blue-900/40", text: "text-blue-800 dark:text-blue-300", icon: Clock },
+  resolved: { bg: "bg-green-100 dark:bg-green-900/40", text: "text-green-800 dark:text-green-300", icon: CheckCircle2 },
+  accepted: { bg: "bg-purple-100 dark:bg-purple-900/40", text: "text-purple-800 dark:text-purple-300", icon: Shield },
+  monitoring: { bg: "bg-amber-100 dark:bg-amber-900/40", text: "text-amber-800 dark:text-amber-300", icon: Clock }
 }
 
 const categoryColors = {
@@ -200,10 +200,10 @@ export default function RisksPage() {
                   return (
                     <div
                       key={risk.id}
-                      className="border rounded-lg overflow-hidden"
+                      className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden"
                     >
                       <div
-                        className="flex items-center justify-between p-3 cursor-pointer hover:bg-slate-50 transition-colors"
+                        className="flex items-center justify-between p-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                         onClick={() => setExpandedRisk(isExpanded ? null : risk.id)}
                       >
                         <div className="flex items-center gap-3">
@@ -235,15 +235,15 @@ export default function RisksPage() {
                       </div>
 
                       {isExpanded && (
-                        <div className="px-4 pb-4 pt-2 border-t bg-slate-50">
+                        <div className="px-4 pb-4 pt-2 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
                           <div className="grid md:grid-cols-2 gap-4">
                             <div>
                               <p className="text-sm font-medium mb-2">Description</p>
-                              <p className="text-sm text-slate-600">{risk.description}</p>
+                              <p className="text-sm text-slate-600 dark:text-slate-300">{risk.description}</p>
                             </div>
                             <div>
                               <p className="text-sm font-medium mb-2">Mitigation Strategy</p>
-                              <p className="text-sm text-slate-600">{risk.mitigation}</p>
+                              <p className="text-sm text-slate-600 dark:text-slate-300">{risk.mitigation}</p>
                             </div>
                           </div>
                           <div className="mt-4">
@@ -257,7 +257,7 @@ export default function RisksPage() {
                               ))}
                             </div>
                           </div>
-                          <div className="mt-4 flex justify-between text-xs text-slate-500">
+                          <div className="mt-4 flex justify-between text-xs text-slate-500 dark:text-slate-400">
                             <span>Owner: {risk.owner}</span>
                             <span>Review: {risk.reviewDate || 'Not scheduled'}</span>
                           </div>
@@ -320,20 +320,20 @@ export default function RisksPage() {
                 </div>
                 <div className="mt-4 flex justify-center gap-4 text-xs">
                   <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 bg-green-100 rounded" />
-                    <span>Low (1-2)</span>
+                    <div className="w-4 h-4 bg-green-100 dark:bg-green-900/40 rounded" />
+                    <span className="text-slate-700 dark:text-slate-300">Low (1-2)</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 bg-yellow-100 rounded" />
-                    <span>Medium (3-5)</span>
+                    <div className="w-4 h-4 bg-yellow-100 dark:bg-yellow-900/40 rounded" />
+                    <span className="text-slate-700 dark:text-slate-300">Medium (3-5)</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 bg-orange-200 rounded" />
-                    <span>High (6-8)</span>
+                    <div className="w-4 h-4 bg-orange-200 dark:bg-orange-900/40 rounded" />
+                    <span className="text-slate-700 dark:text-slate-300">High (6-8)</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 bg-red-200 rounded" />
-                    <span>Critical (9+)</span>
+                    <div className="w-4 h-4 bg-red-200 dark:bg-red-900/40 rounded" />
+                    <span className="text-slate-700 dark:text-slate-300">Critical (9+)</span>
                   </div>
                 </div>
               </CardContent>
@@ -346,14 +346,14 @@ export default function RisksPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="text-sm font-medium mb-2">By Category</p>
+                  <p className="text-sm font-medium mb-2 dark:text-slate-200">By Category</p>
                   <div className="space-y-2">
                     {Object.entries(riskSummary.byCategory).map(([cat, count]) => (
                       <div key={cat} className="flex items-center gap-2">
                         <span className={`w-3 h-3 rounded ${categoryColors[cat as keyof typeof categoryColors]}`} />
-                        <span className="text-sm capitalize flex-1">{cat}</span>
-                        <span className="font-medium">{count}</span>
-                        <div className="w-20 bg-slate-100 rounded-full h-2">
+                        <span className="text-sm capitalize flex-1 dark:text-slate-300">{cat}</span>
+                        <span className="font-medium dark:text-slate-200">{count}</span>
+                        <div className="w-20 bg-slate-100 dark:bg-slate-700 rounded-full h-2">
                           <div
                             className={`h-2 rounded-full ${categoryColors[cat as keyof typeof categoryColors]}`}
                             style={{ width: `${(count / riskSummary.totalRisks) * 100}%` }}
@@ -365,7 +365,7 @@ export default function RisksPage() {
                 </div>
 
                 <div>
-                  <p className="text-sm font-medium mb-2">By Status</p>
+                  <p className="text-sm font-medium mb-2 dark:text-slate-200">By Status</p>
                   <div className="grid grid-cols-2 gap-2">
                     {Object.entries(statusColors).map(([status, colors]) => {
                       const count = riskRegister.filter(r => r.status === status).length
@@ -412,9 +412,9 @@ export default function RisksPage() {
                         <div
                           key={item.id}
                           className={`flex items-start gap-3 p-3 rounded-lg border ${
-                            item.status === 'compliant' ? 'bg-green-50 border-green-200' :
-                            item.status === 'in_progress' ? 'bg-blue-50 border-blue-200' :
-                            'bg-slate-50 border-slate-200'
+                            item.status === 'compliant' ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' :
+                            item.status === 'in_progress' ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' :
+                            'bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700'
                           }`}
                         >
                           {item.status === 'compliant' ? (
@@ -425,17 +425,17 @@ export default function RisksPage() {
                             <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5" />
                           )}
                           <div className="flex-1">
-                            <p className="text-sm">{item.requirement}</p>
+                            <p className="text-sm dark:text-slate-200">{item.requirement}</p>
                             {item.evidence && (
-                              <p className="text-xs text-slate-500 mt-1">Evidence: {item.evidence}</p>
+                              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Evidence: {item.evidence}</p>
                             )}
                           </div>
                           <Badge
                             variant="outline"
                             className={
-                              item.status === 'compliant' ? 'bg-green-100 text-green-800' :
-                              item.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
-                              'bg-slate-100 text-slate-800'
+                              item.status === 'compliant' ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 border-green-300 dark:border-green-700' :
+                              item.status === 'in_progress' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 border-blue-300 dark:border-blue-700' :
+                              'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-600'
                             }
                           >
                             {item.status.replace('_', ' ')}

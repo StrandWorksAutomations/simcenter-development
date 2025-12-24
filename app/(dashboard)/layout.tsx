@@ -34,7 +34,17 @@ import {
   Monitor,
   Workflow,
   ClipboardList,
-  Package
+  Package,
+  HandCoins,
+  Heart,
+  Layers,
+  LayoutGrid,
+  Hammer,
+  Wrench,
+  Rocket,
+  UserCircle,
+  RefreshCw,
+  Shield
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -46,12 +56,15 @@ const navigation = [
     title: "Overview",
     items: [
       { name: "Dashboard", href: "/", icon: LayoutDashboard },
+      { name: "Key Stakeholders", href: "/stakeholders", icon: UserCircle },
       { name: "Benchmarks", href: "/benchmarks", icon: BarChart3 },
+      { name: "Space Programming", href: "/space-programming", icon: LayoutGrid },
     ]
   },
   {
     title: "Budget & Planning",
     items: [
+      { name: "5-Year Scenarios", href: "/scenarios", icon: Layers },
       { name: "CAPEX Model", href: "/capex", icon: Calculator },
       { name: "Construction", href: "/construction", icon: HardHat },
       { name: "A/V Architecture", href: "/av-architecture", icon: Monitor },
@@ -72,13 +85,30 @@ const navigation = [
     title: "Operations",
     items: [
       { name: "Operations Model", href: "/operations", icon: Workflow },
+      { name: "Build Process", href: "/build-process", icon: Hammer },
+      { name: "Maintenance", href: "/maintenance", icon: Wrench },
+      { name: "Go-Live Checklist", href: "/go-live", icon: Rocket },
+      { name: "Quality Control", href: "/quality-control", icon: Shield },
+      { name: "Process Improvement", href: "/process-improvement", icon: RefreshCw },
       { name: "Risks", href: "/risks", icon: AlertTriangle },
       { name: "ROI", href: "/roi", icon: TrendingUp },
     ]
   },
   {
-    title: "Presentation",
+    title: "Strategy & Leadership",
     items: [
+      { name: "Strategic Plan", href: "/strategic-plan", icon: Layers },
+      { name: "Standards & Policy", href: "/standards-policy", icon: FileText },
+      { name: "Curriculum", href: "/curriculum", icon: Calendar },
+      { name: "Technology Roadmap", href: "/technology-roadmap", icon: Monitor },
+      { name: "Accreditation", href: "/accreditation", icon: Heart },
+      { name: "Leadership Proposal", href: "/leadership-proposal", icon: Presentation },
+    ]
+  },
+  {
+    title: "Funding & Presentation",
+    items: [
+      { name: "Donor Resources", href: "/funding", icon: HandCoins },
       { name: "Donor Presentation", href: "/presentation", icon: Presentation },
       { name: "3D Facility", href: "/facility-3d", icon: Box },
       { name: "Investor Deck", href: "/investor-deck", icon: Presentation },
