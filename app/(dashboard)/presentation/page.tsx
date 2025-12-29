@@ -349,12 +349,12 @@ export default function PresentationPage() {
       {viewMode === "executive" && (
         <div className="space-y-8">
           {/* Vision Statement */}
-          <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-slate-900">
+          <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-background">
             <CardContent className="pt-8 pb-8">
               <div className="text-center max-w-4xl mx-auto">
                 <Sparkles className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h2 className="text-3xl font-bold mb-4 dark:text-white">Our Vision</h2>
-                <p className="text-xl text-slate-700 dark:text-slate-300 leading-relaxed">
+                <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   To establish Central Kentucky's premier healthcare simulation center,
                   revolutionizing medical education and patient safety through immersive,
                   hands-on training that prepares healthcare professionals for real-world
@@ -373,10 +373,10 @@ export default function PresentationPage() {
                   <div className="flex items-start justify-between mb-3">
                     <metric.icon className={`h-8 w-8 text-${metric.color}-600`} />
                   </div>
-                  <div className="text-4xl font-bold mb-2 dark:text-white">
+                  <div className="text-4xl font-bold mb-2">
                     {metric.value.toLocaleString()}{metric.suffix || ''}
                   </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-muted-foreground">
                     {metric.label}
                   </div>
                 </CardContent>
@@ -386,7 +386,7 @@ export default function PresentationPage() {
 
           {/* The Problem & Solution */}
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-red-200 bg-red-50 dark:bg-red-950/30">
+            <Card className="border-red-200 bg-red-50 dark:bg-card/50">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="h-6 w-6 text-red-600" />
@@ -404,14 +404,14 @@ export default function PresentationPage() {
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <ChevronRight className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-slate-700 dark:text-slate-300">{item}</span>
+                      <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-green-200 bg-green-50 dark:bg-green-950/30">
+            <Card className="border-green-200 bg-green-50 dark:bg-card/50">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-6 w-6 text-green-600" />
@@ -429,7 +429,7 @@ export default function PresentationPage() {
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-slate-700 dark:text-slate-300">{item}</span>
+                      <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -464,7 +464,7 @@ export default function PresentationPage() {
           </Card>
 
           {/* Funding Progress */}
-          <Card className="border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30">
+          <Card className="border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-card/30">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -474,7 +474,7 @@ export default function PresentationPage() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold dark:text-white">
+                  <span className="text-lg font-semibold">
                     ${(currentFunding / 1000000).toFixed(1)}M raised
                   </span>
                   <span className="text-lg font-semibold text-purple-600">
@@ -483,19 +483,19 @@ export default function PresentationPage() {
                 </div>
                 <Progress value={fundingProgress} className="h-4" />
                 <div className="grid grid-cols-3 gap-4 mt-6">
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
+                  <div className="text-center p-4 bg-card rounded-lg">
                     <div className="text-2xl font-bold text-purple-600">{fundingProgress.toFixed(0)}%</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">Complete</div>
+                    <div className="text-sm text-muted-foreground">Complete</div>
                   </div>
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
+                  <div className="text-center p-4 bg-card rounded-lg">
                     <div className="text-2xl font-bold text-blue-600">
                       ${((fundingGoal - currentFunding) / 1000000).toFixed(1)}M
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">Remaining</div>
+                    <div className="text-sm text-muted-foreground">Remaining</div>
                   </div>
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
+                  <div className="text-center p-4 bg-card rounded-lg">
                     <div className="text-2xl font-bold text-green-600">Q3 2026</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">Target Launch</div>
+                    <div className="text-sm text-muted-foreground">Target Launch</div>
                   </div>
                 </div>
               </div>
@@ -508,7 +508,7 @@ export default function PresentationPage() {
       {viewMode === "detailed" && (
         <div className="space-y-8">
           {/* Facility Overview */}
-          <Card className="bg-gradient-to-r from-slate-900 to-blue-900 text-white">
+          <Card className="bg-gradient-to-r from-background to-blue-900 text-white">
             <CardContent className="pt-6">
               <div className="flex items-start gap-6">
                 <div className="p-4 bg-white/10 rounded-xl">
@@ -565,10 +565,10 @@ export default function PresentationPage() {
                       <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: item.color }} />
                       <div className="flex-1">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium dark:text-white">{item.label}</span>
-                          <span className="text-sm font-bold dark:text-white">{formatCurrency(item.amount)}</span>
+                          <span className="text-sm font-medium">{item.label}</span>
+                          <span className="text-sm font-bold">{formatCurrency(item.amount)}</span>
                         </div>
-                        <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-1">
+                        <div className="h-2 bg-muted rounded-full mt-1">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -606,10 +606,10 @@ export default function PresentationPage() {
                       <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: item.color }} />
                       <div className="flex-1">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium dark:text-white">{item.label}</span>
-                          <span className="text-sm font-bold dark:text-white">{formatCurrency(item.amount)}</span>
+                          <span className="text-sm font-medium">{item.label}</span>
+                          <span className="text-sm font-bold">{formatCurrency(item.amount)}</span>
                         </div>
-                        <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-1">
+                        <div className="h-2 bg-muted rounded-full mt-1">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -676,17 +676,17 @@ export default function PresentationPage() {
               </div>
               <div className="grid grid-cols-3 gap-4 mt-6">
                 <div className="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                  <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">Total Investment</div>
+                  <div className="text-sm text-muted-foreground mb-1">Total Investment</div>
                   <div className="text-2xl font-bold text-red-600">
                     ${(results.fiveYear.totalCost / 1000000).toFixed(1)}M
                   </div>
                 </div>
                 <div className="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                  <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">Cost Avoidance</div>
+                  <div className="text-sm text-muted-foreground mb-1">Cost Avoidance</div>
                   <div className="text-2xl font-bold text-green-600">$5.8M</div>
                 </div>
                 <div className="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                  <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">Net Position</div>
+                  <div className="text-sm text-muted-foreground mb-1">Net Position</div>
                   <div className="text-2xl font-bold text-amber-600">46% Recovery</div>
                 </div>
               </div>
@@ -700,7 +700,7 @@ export default function PresentationPage() {
                 <div className="text-3xl font-bold text-blue-600 mb-1">
                   {formatCurrency(results.metrics.costPerSession)}
                 </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Cost per Session</div>
+                <div className="text-sm text-muted-foreground">Cost per Session</div>
               </CardContent>
             </Card>
             <Card>
@@ -708,7 +708,7 @@ export default function PresentationPage() {
                 <div className="text-3xl font-bold text-purple-600 mb-1">
                   {results.metrics.annualSessions.toLocaleString()}
                 </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Sessions per Year</div>
+                <div className="text-sm text-muted-foreground">Sessions per Year</div>
               </CardContent>
             </Card>
             <Card>
@@ -716,7 +716,7 @@ export default function PresentationPage() {
                 <div className="text-3xl font-bold text-emerald-600 mb-1">
                   {formatCurrency(results.metrics.costPerSF)}
                 </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Cost per SF</div>
+                <div className="text-sm text-muted-foreground">Cost per SF</div>
               </CardContent>
             </Card>
             <Card>
@@ -724,7 +724,7 @@ export default function PresentationPage() {
                 <div className="text-3xl font-bold text-amber-600 mb-1">
                   {params.coreFTE.toFixed(1)}
                 </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Core Staff FTE</div>
+                <div className="text-sm text-muted-foreground">Core Staff FTE</div>
               </CardContent>
             </Card>
           </div>
@@ -836,14 +836,14 @@ export default function PresentationPage() {
 
                 {["main", "sim", "control", "support"].map((tab) => (
                   <TabsContent key={tab} value={tab}>
-                    <div className="relative aspect-[16/10] bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 overflow-hidden">
+                    <div className="relative aspect-[16/10] bg-gradient-to-br from-slate-50 to-blue-50 dark:from-background dark:to-background rounded-xl border-2 border-dashed border-border overflow-hidden">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center p-8">
-                          <Building2 className="h-16 w-16 text-slate-400 mx-auto mb-4" />
-                          <div className="text-lg font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                          <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                          <div className="text-lg font-semibold text-muted-foreground mb-2">
                             {tab.charAt(0).toUpperCase() + tab.slice(1)} Floor Plan
                           </div>
-                          <div className="text-sm text-slate-500 dark:text-slate-500">
+                          <div className="text-sm text-muted-foreground">
                             AI-optimized layout • {params.floorArea.toLocaleString()} SF
                           </div>
                         </div>
@@ -933,8 +933,8 @@ export default function PresentationPage() {
           {/* Naming Opportunities */}
           <div className="space-y-6">
             <div className="text-center">
-              <h2 className="text-3xl font-bold mb-2 dark:text-white">Naming & Sponsorship Opportunities</h2>
-              <p className="text-slate-600 dark:text-slate-400">
+              <h2 className="text-3xl font-bold mb-2">Naming & Sponsorship Opportunities</h2>
+              <p className="text-muted-foreground">
                 Create a lasting legacy in medical education and patient safety
               </p>
             </div>
@@ -967,7 +967,7 @@ export default function PresentationPage() {
                             <Award className="h-4 w-4" />
                             Naming Rights:
                           </h4>
-                          <p className="text-lg font-medium text-slate-700 dark:text-slate-300">
+                          <p className="text-lg font-medium text-muted-foreground">
                             {tier.name}
                           </p>
                         </div>
@@ -982,7 +982,7 @@ export default function PresentationPage() {
                             {tier.opportunities.map((opp, i) => (
                               <li key={i} className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-green-600" />
-                                <span className="text-slate-700 dark:text-slate-300">{opp}</span>
+                                <span className="text-muted-foreground">{opp}</span>
                               </li>
                             ))}
                           </ul>
@@ -998,7 +998,7 @@ export default function PresentationPage() {
                         {tier.benefits.map((benefit, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <ChevronRight className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-slate-700 dark:text-slate-300">{benefit}</span>
+                            <span className="text-sm text-muted-foreground">{benefit}</span>
                           </li>
                         ))}
                       </ul>
@@ -1025,28 +1025,28 @@ export default function PresentationPage() {
                 <div className="text-center p-6 bg-blue-50 dark:bg-blue-950/30 rounded-xl">
                   <GraduationCap className="h-10 w-10 text-blue-600 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-blue-600 mb-1">25,000+</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-muted-foreground">
                     Healthcare professionals trained
                   </div>
                 </div>
                 <div className="text-center p-6 bg-red-50 dark:bg-red-950/30 rounded-xl">
                   <Heart className="h-10 w-10 text-red-600 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-red-600 mb-1">1,250+</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-muted-foreground">
                     Lives potentially saved
                   </div>
                 </div>
                 <div className="text-center p-6 bg-green-50 dark:bg-green-950/30 rounded-xl">
                   <TrendingDown className="h-10 w-10 text-green-600 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-green-600 mb-1">60%</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-muted-foreground">
                     Reduction in preventable errors
                   </div>
                 </div>
                 <div className="text-center p-6 bg-purple-50 dark:bg-purple-950/30 rounded-xl">
                   <Users className="h-10 w-10 text-purple-600 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-purple-600 mb-1">500+</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-muted-foreground">
                     Nurses retained through better training
                   </div>
                 </div>
@@ -1065,14 +1065,14 @@ export default function PresentationPage() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
                 {testimonials.map((testimonial, idx) => (
-                  <div key={idx} className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                  <div key={idx} className="p-6 bg-card rounded-xl border border-border">
                     <div className="text-4xl mb-4">{testimonial.image}</div>
-                    <p className="text-slate-700 dark:text-slate-300 mb-4 italic">
+                    <p className="text-muted-foreground mb-4 italic">
                       "{testimonial.quote}"
                     </p>
                     <div className="border-t pt-4">
-                      <div className="font-semibold dark:text-white">{testimonial.author}</div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">{testimonial.role}</div>
+                      <div className="font-semibold">{testimonial.author}</div>
+                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-500">{testimonial.organization}</div>
                     </div>
                   </div>

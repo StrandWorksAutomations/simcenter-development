@@ -97,11 +97,11 @@ export default function StaffingPage() {
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Staffing & Operations</h1>
-          <p className="text-slate-500">
+          <p className="text-muted-foreground">
             FTE allocation, coverage planning, and labor cost projections
           </p>
         </div>
-        <Button size="sm">
+        <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all">
           <Plus className="h-4 w-4 mr-2" />
           Add Position
         </Button>
@@ -115,7 +115,7 @@ export default function StaffingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalIncrementalFte.toFixed(1)}</div>
-            <p className="text-xs text-slate-500">New hires needed</p>
+            <p className="text-xs text-muted-foreground">New hires needed</p>
           </CardContent>
         </Card>
         <Card>
@@ -124,7 +124,7 @@ export default function StaffingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{facultyPoolModel.totalFte} FTE</div>
-            <p className="text-xs text-slate-500">{facultyPoolModel.educatorsNeeded} educators</p>
+            <p className="text-xs text-muted-foreground">{facultyPoolModel.educatorsNeeded} educators</p>
           </CardContent>
         </Card>
         <Card>
@@ -135,7 +135,7 @@ export default function StaffingPage() {
             <div className="text-2xl font-bold text-blue-600">
               {(totalIncrementalFte + facultyPoolModel.totalFte).toFixed(1)}
             </div>
-            <p className="text-xs text-slate-500">Combined coverage</p>
+            <p className="text-xs text-muted-foreground">Combined coverage</p>
           </CardContent>
         </Card>
         <Card>
@@ -144,7 +144,7 @@ export default function StaffingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${(totalIncrementalCost / 1000).toFixed(0)}k</div>
-            <p className="text-xs text-slate-500">Direct costs</p>
+            <p className="text-xs text-muted-foreground">Direct costs</p>
           </CardContent>
         </Card>
         <Card>
@@ -153,7 +153,7 @@ export default function StaffingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${staffingCostSummary.monthlyPayrollCost.toLocaleString()}</div>
-            <p className="text-xs text-slate-500">Per month</p>
+            <p className="text-xs text-muted-foreground">Per month</p>
           </CardContent>
         </Card>
       </div>
@@ -179,7 +179,7 @@ export default function StaffingPage() {
               <CardContent>
                 <div className="space-y-4">
                   {coreStaffingModel.map((position) => (
-                    <div key={position.id} className="p-4 rounded-lg border hover:bg-blue-50 hover:border-blue-200 transition-colors">
+                    <div key={position.id} className="p-4 rounded-lg border border-slate-200 hover:border-blue-400 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <h3 className="font-semibold">{position.role}</h3>
@@ -189,10 +189,10 @@ export default function StaffingPage() {
                         </div>
                         <div className="text-right">
                           <p className="font-bold text-blue-600">${position.loadedCost.toLocaleString()}/yr</p>
-                          <p className="text-xs text-slate-500">Base: ${position.baseSalary.toLocaleString()}</p>
+                          <p className="text-xs text-muted-foreground">Base: ${position.baseSalary.toLocaleString()}</p>
                         </div>
                       </div>
-                      <p className="text-sm text-slate-600 mb-2">{position.description}</p>
+                      <p className="text-sm text-muted-foreground mb-2">{position.description}</p>
                       <div className="flex flex-wrap gap-1">
                         {position.certifications.map((cert, i) => (
                           <Badge key={i} variant="secondary" className="text-xs">
@@ -207,7 +207,7 @@ export default function StaffingPage() {
                     <span className="font-semibold">Total Core Staff</span>
                     <div className="text-right">
                       <p className="font-bold text-lg text-blue-600">${totalIncrementalCost.toLocaleString()}/yr</p>
-                      <p className="text-xs text-slate-500">{totalIncrementalFte} FTE</p>
+                      <p className="text-xs text-muted-foreground">{totalIncrementalFte} FTE</p>
                     </div>
                   </div>
                 </div>
@@ -223,33 +223,33 @@ export default function StaffingPage() {
                 <CardDescription>Existing educators contributing to simulation</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="p-4 rounded-lg bg-green-50 border border-green-200 mb-4">
+                <div className="p-4 rounded-lg bg-card border border-border mb-4">
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                      <p className="text-xs text-slate-500">Educators Needed</p>
-                      <p className="text-xl font-bold">{facultyPoolModel.educatorsNeeded}</p>
+                      <p className="text-xs text-muted-foreground">Educators Needed</p>
+                      <p className="text-xl font-bold text-foreground">{facultyPoolModel.educatorsNeeded}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Time Each</p>
-                      <p className="text-xl font-bold">{facultyPoolModel.hoursPerWeekPerEducator}h/week</p>
+                      <p className="text-xs text-muted-foreground">Time Each</p>
+                      <p className="text-xl font-bold text-foreground">{facultyPoolModel.hoursPerWeekPerEducator}h/week</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Total FTE</p>
-                      <p className="text-xl font-bold">{facultyPoolModel.totalFte}</p>
+                      <p className="text-xs text-muted-foreground">Total FTE</p>
+                      <p className="text-xl font-bold text-foreground">{facultyPoolModel.totalFte}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">If Backfilled</p>
+                      <p className="text-xs text-muted-foreground">If Backfilled</p>
                       <p className="text-xl font-bold text-green-700">${(facultyPoolModel.totalReallocatedValue / 1000).toFixed(0)}k</p>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600">{facultyPoolModel.description}</p>
+                  <p className="text-sm text-muted-foreground">{facultyPoolModel.description}</p>
                 </div>
 
                 <div className="space-y-2">
                   <h4 className="font-medium text-sm">Responsibilities</h4>
                   <ul className="space-y-1">
                     {facultyPoolModel.responsibilities.map((resp, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                      <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                         <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
                         {resp}
                       </li>
@@ -258,7 +258,7 @@ export default function StaffingPage() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t">
-                  <p className="text-xs text-slate-500">{facultyPoolModel.notes}</p>
+                  <p className="text-xs text-muted-foreground">{facultyPoolModel.notes}</p>
                 </div>
               </CardContent>
             </Card>
@@ -366,28 +366,28 @@ export default function StaffingPage() {
                   <div className="p-4 bg-slate-50 rounded-lg text-center">
                     <Clock className="h-8 w-8 mx-auto mb-2 text-slate-400" />
                     <p className="text-2xl font-bold">{coverageRequirements.coverage.sessions}</p>
-                    <p className="text-xs text-slate-500">Sessions/Day</p>
+                    <p className="text-xs text-muted-foreground">Sessions/Day</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-lg text-center">
                     <Users className="h-8 w-8 mx-auto mb-2 text-slate-400" />
                     <p className="text-2xl font-bold">{coverageRequirements.coverage.learners}</p>
-                    <p className="text-xs text-slate-500">Learners/Day</p>
+                    <p className="text-xs text-muted-foreground">Learners/Day</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-lg text-center">
                     <Calendar className="h-8 w-8 mx-auto mb-2 text-slate-400" />
                     <p className="text-2xl font-bold">{coverageRequirements.coverage.monthlyCapacity}</p>
-                    <p className="text-xs text-slate-500">Sessions/Month</p>
+                    <p className="text-xs text-muted-foreground">Sessions/Month</p>
                   </div>
                   <div className="p-4 bg-blue-50 rounded-lg text-center">
                     <GraduationCap className="h-8 w-8 mx-auto mb-2 text-blue-500" />
                     <p className="text-2xl font-bold text-blue-600">{coverageRequirements.coverage.learners * 22}</p>
-                    <p className="text-xs text-slate-500">Learners/Month</p>
+                    <p className="text-xs text-muted-foreground">Learners/Month</p>
                   </div>
                 </div>
 
                 <div className="mt-6">
                   <h4 className="font-medium mb-3">Coverage Guidelines</h4>
-                  <ul className="space-y-2 text-sm text-slate-600">
+                  <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2" />
                       1 Coordinator can support 2 concurrent simulation rooms
@@ -477,7 +477,7 @@ export default function StaffingPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <p className="text-xs text-slate-500">Total Initial Training Cost</p>
+                    <p className="text-xs text-muted-foreground">Total Initial Training Cost</p>
                     <p className="text-3xl font-bold text-blue-600">
                       ${trainingCosts.totalInitialTrainingCost.toLocaleString()}
                     </p>
@@ -487,27 +487,27 @@ export default function StaffingPage() {
                     <div className="flex justify-between items-center p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">Director Onboarding</p>
-                        <p className="text-xs text-slate-500">{trainingCosts.onboarding.durationWeeks} weeks</p>
+                        <p className="text-xs text-muted-foreground">{trainingCosts.onboarding.durationWeeks} weeks</p>
                       </div>
                       <span className="font-medium">${trainingCosts.onboarding.directorOnboardingCost.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">Coordinator Onboarding</p>
-                        <p className="text-xs text-slate-500">{trainingCosts.onboarding.durationWeeks} weeks</p>
+                        <p className="text-xs text-muted-foreground">{trainingCosts.onboarding.durationWeeks} weeks</p>
                       </div>
                       <span className="font-medium">${trainingCosts.onboarding.coordinatorOnboardingCost.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">Admin Onboarding</p>
-                        <p className="text-xs text-slate-500">{trainingCosts.onboarding.durationWeeks} weeks</p>
+                        <p className="text-xs text-muted-foreground">{trainingCosts.onboarding.durationWeeks} weeks</p>
                       </div>
                       <span className="font-medium">${trainingCosts.onboarding.adminOnboardingCost.toLocaleString()}</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     Includes vendor training, shadowing, scenario development, and equipment familiarization
                   </p>
                 </div>
@@ -541,7 +541,7 @@ export default function StaffingPage() {
               <div className="mt-6 grid grid-cols-5 gap-4">
                 {annualProjection.map((year, i) => (
                   <div key={i} className="text-center p-3 bg-slate-50 rounded-lg">
-                    <p className="text-xs text-slate-500">{year.year}</p>
+                    <p className="text-xs text-muted-foreground">{year.year}</p>
                     <p className="font-bold">
                       ${((year['Core Staff'] + year['Training']) / 1000).toFixed(0)}k
                     </p>

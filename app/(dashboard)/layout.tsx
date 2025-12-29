@@ -139,7 +139,7 @@ export default function DashboardLayout({
     >
       Skip to main content
     </a>
-    <div className="flex min-h-screen bg-gray-100 dark:bg-slate-950">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-background">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
@@ -151,11 +151,11 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 transform bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto",
+          "fixed inset-y-0 left-0 z-50 w-64 transform bg-sidebar border-r border-sidebar-border transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto",
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex h-16 items-center justify-between px-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex h-16 items-center justify-between px-4 border-b border-sidebar-border">
           <Link href="/" className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center">
               <Box className="h-5 w-5 text-white" />
@@ -192,8 +192,8 @@ export default function DashboardLayout({
                           className={cn(
                             "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                             isActive
-                              ? "bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-                              : "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+                              ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                              : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                           )}
                           onClick={() => setSidebarOpen(false)}
                         >
@@ -213,7 +213,7 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top header */}
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 lg:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-sidebar-border bg-sidebar px-4 lg:px-6">
           <Button
             variant="ghost"
             size="icon"

@@ -58,7 +58,7 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Project Overview</h1>
-          <p className="text-slate-500">
+          <p className="text-muted-foreground">
             Baptist Health Lexington Simulation Center Development
           </p>
         </div>
@@ -69,69 +69,69 @@ export default function DashboardPage() {
 
       {/* Key metrics - using live data from Budget Simulator */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700 relative overflow-hidden">
+        <Card className="relative overflow-hidden">
           <div className="absolute top-2 right-2">
             <Sparkles className="h-3 w-3 text-blue-400" />
           </div>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 dark:text-slate-400">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Phase 1 CAPEX
             </CardTitle>
             <DollarSign className="h-4 w-4 text-emerald-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white">{formatCurrency(results.capex.net)}</div>
+            <div className="text-2xl font-bold">{formatCurrency(results.capex.net)}</div>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs text-slate-500 dark:text-slate-400">5-Year Total:</span>
+              <span className="text-xs text-muted-foreground">5-Year Total:</span>
               <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{formatCurrency(results.fiveYear.totalCost)}</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 dark:text-slate-400">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Timeline
             </CardTitle>
             <Calendar className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white">{staticStats.timelineMonths} Months</div>
+            <div className="text-2xl font-bold">{staticStats.timelineMonths} Months</div>
             <div className="flex items-center gap-2 mt-1">
               <Progress value={staticStats.progressPercent} className="h-1.5 flex-1" />
-              <span className="text-xs text-slate-500 dark:text-slate-400">{staticStats.progressPercent}%</span>
+              <span className="text-xs text-muted-foreground">{staticStats.progressPercent}%</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700 relative overflow-hidden">
+        <Card className="relative overflow-hidden">
           <div className="absolute top-2 right-2">
             <Sparkles className="h-3 w-3 text-blue-400" />
           </div>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 dark:text-slate-400">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Staffing (FTE)
             </CardTitle>
             <Users className="h-4 w-4 text-purple-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white">{params.coreFTE.toFixed(1)}</div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-2xl font-bold">{params.coreFTE.toFixed(1)}</div>
+            <p className="text-xs text-muted-foreground">
               Core staff + {params.facultyAllocationPercent}% faculty allocation
             </p>
           </CardContent>
         </Card>
 
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500 dark:text-slate-400">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Risk Status
             </CardTitle>
             <AlertTriangle className="h-4 w-4 text-amber-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white">{staticStats.totalRisks} Identified</div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-2xl font-bold">{staticStats.totalRisks} Identified</div>
+            <p className="text-xs text-muted-foreground">
               {staticStats.highRisks} high priority requiring attention
             </p>
           </CardContent>
@@ -139,13 +139,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Budget breakdown */}
-      <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+      <Card className="">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 dark:text-white">
+          <CardTitle className="flex items-center gap-2">
             <DollarSign className="h-5 w-5" />
             Budget Allocation
           </CardTitle>
-          <CardDescription className="dark:text-slate-400">
+          <CardDescription>
             Phase 1 capital and equipment investment breakdown
           </CardDescription>
         </CardHeader>
@@ -159,10 +159,10 @@ export default function DashboardPage() {
             ].map((cat) => (
               <div key={cat.id} className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-300">{cat.name}</span>
-                  <span className="font-medium dark:text-white">{formatCurrency(cat.amount)}</span>
+                  <span className="text-slate-600 text-muted-foreground">{cat.name}</span>
+                  <span className="font-medium">{formatCurrency(cat.amount)}</span>
                 </div>
-                <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full ${
                       cat.category === 'capital' ? 'bg-blue-500' :
@@ -173,17 +173,17 @@ export default function DashboardPage() {
                     style={{ width: `${(cat.amount / results.capex.total) * 100}%` }}
                   />
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{cat.description}</p>
+                <p className="text-xs text-muted-foreground line-clamp-1">{cat.description}</p>
               </div>
             ))}
           </div>
           <div className="mt-6 pt-4 border-t dark:border-slate-700 flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-slate-500 dark:text-slate-400">Total Phase 1 Investment</span>
+                <span className="text-sm text-muted-foreground">Total Phase 1 Investment</span>
                 <Sparkles className="h-3 w-3 text-blue-400" />
               </div>
-              <div className="text-xl font-bold dark:text-white">{formatCurrency(results.capex.net)}</div>
+              <div className="text-xl font-bold">{formatCurrency(results.capex.net)}</div>
             </div>
             <Link href="/budget" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1">
               Open Budget Simulator <ArrowRight className="h-4 w-4" />
@@ -195,13 +195,13 @@ export default function DashboardPage() {
       {/* Main content grid */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Timeline */}
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 dark:text-white">
+            <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               Project Timeline
             </CardTitle>
-            <CardDescription className="dark:text-slate-400">
+            <CardDescription>
               12-month implementation from design to go-live
             </CardDescription>
           </CardHeader>
@@ -215,12 +215,12 @@ export default function DashboardPage() {
                     ) : phase.status === 'in_progress' ? (
                       <Clock className="h-5 w-5 text-blue-500" />
                     ) : (
-                      <div className="h-5 w-5 rounded-full border-2 border-slate-300 dark:border-slate-600" />
+                      <div className="h-5 w-5 rounded-full border-2 border-border" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium dark:text-white">{phase.name}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-sm font-medium">{phase.name}</p>
+                    <p className="text-xs text-muted-foreground">
                       Month {phase.startMonth + 1}{phase.endMonth > phase.startMonth ? `-${phase.endMonth + 1}` : ''}
                     </p>
                   </div>
@@ -243,13 +243,13 @@ export default function DashboardPage() {
         </Card>
 
         {/* Top Risks */}
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 dark:text-white">
+            <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5" />
               Top Risks
             </CardTitle>
-            <CardDescription className="dark:text-slate-400">
+            <CardDescription>
               Highest priority risks by score
             </CardDescription>
           </CardHeader>
@@ -266,8 +266,8 @@ export default function DashboardPage() {
                     {risk.riskScore}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate dark:text-white">{risk.title}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{risk.category}</p>
+                    <p className="text-sm font-medium truncate">{risk.title}</p>
+                    <p className="text-xs text-muted-foreground">{risk.category}</p>
                   </div>
                   <Badge variant="outline" className="text-xs capitalize">
                     {risk.status}
@@ -282,13 +282,13 @@ export default function DashboardPage() {
         </Card>
 
         {/* Planning Progress */}
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 dark:text-white">
+            <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
               Planning Progress
             </CardTitle>
-            <CardDescription className="dark:text-slate-400">
+            <CardDescription>
               Module completion ({planningProgress.complete}/{planningProgress.total})
             </CardDescription>
           </CardHeader>
@@ -296,7 +296,7 @@ export default function DashboardPage() {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Progress value={planningProgress.percent} className="flex-1 h-2" />
-                <span className="text-sm font-medium dark:text-white">{planningProgress.percent}%</span>
+                <span className="text-sm font-medium">{planningProgress.percent}%</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {completedModules.map((module) => (
@@ -312,7 +312,7 @@ export default function DashboardPage() {
                   </Link>
                 ))}
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 {planningProgress.total - planningProgress.complete} modules remaining
               </p>
             </div>
@@ -320,37 +320,37 @@ export default function DashboardPage() {
         </Card>
 
         {/* Quick Actions */}
-        <Card className="dark:bg-slate-800/50 dark:border-slate-700">
+        <Card className="">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 dark:text-white">
+            <CardTitle className="flex items-center gap-2">
               <Activity className="h-5 w-5" />
               Quick Navigation
             </CardTitle>
-            <CardDescription className="dark:text-slate-400">
+            <CardDescription>
               Jump to key project areas
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/construction" className="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+              <Link href="/construction" className="flex flex-col items-center justify-center p-4 rounded-lg border border-border hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                 <Building2 className="h-6 w-6 text-blue-500 mb-2" />
-                <span className="text-sm font-medium dark:text-white">Construction</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">{formatCurrency(results.capex.construction)}</span>
+                <span className="text-sm font-medium">Construction</span>
+                <span className="text-xs text-muted-foreground">{formatCurrency(results.capex.construction)}</span>
               </Link>
-              <Link href="/benchmarks" className="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+              <Link href="/benchmarks" className="flex flex-col items-center justify-center p-4 rounded-lg border border-border hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                 <Target className="h-6 w-6 text-emerald-500 mb-2" />
-                <span className="text-sm font-medium dark:text-white">Benchmarks</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">11 Centers</span>
+                <span className="text-sm font-medium">Benchmarks</span>
+                <span className="text-xs text-muted-foreground">11 Centers</span>
               </Link>
-              <Link href="/investor-deck" className="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+              <Link href="/investor-deck" className="flex flex-col items-center justify-center p-4 rounded-lg border border-border hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                 <TrendingUp className="h-6 w-6 text-purple-500 mb-2" />
-                <span className="text-sm font-medium dark:text-white">Investor Deck</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">Presentation</span>
+                <span className="text-sm font-medium">Investor Deck</span>
+                <span className="text-xs text-muted-foreground">Presentation</span>
               </Link>
-              <Link href="/risks" className="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+              <Link href="/risks" className="flex flex-col items-center justify-center p-4 rounded-lg border border-border hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                 <AlertTriangle className="h-6 w-6 text-amber-500 mb-2" />
-                <span className="text-sm font-medium dark:text-white">Risk Register</span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">{staticStats.totalRisks} Risks</span>
+                <span className="text-sm font-medium">Risk Register</span>
+                <span className="text-xs text-muted-foreground">{staticStats.totalRisks} Risks</span>
               </Link>
             </div>
           </CardContent>
@@ -364,7 +364,7 @@ export default function DashboardPage() {
         </div>
         <CardContent className="pt-6">
           <div className="flex items-start gap-6">
-            <div className="p-3 bg-slate-700 rounded-lg shadow-sm">
+            <div className="p-3 bg-accent rounded-lg shadow-sm">
               <Building2 className="h-8 w-8 text-blue-400" />
             </div>
             <div className="flex-1">
@@ -375,19 +375,19 @@ export default function DashboardPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 <div>
                   <div className="text-2xl font-bold text-blue-400">{params.simRooms}</div>
-                  <div className="text-xs text-slate-400">Simulation Suites</div>
+                  <div className="text-xs text-muted-foreground">Simulation Suites</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-emerald-400">{params.controlRooms}</div>
-                  <div className="text-xs text-slate-400">Control Room{params.controlRooms > 1 ? 's' : ''}</div>
+                  <div className="text-xs text-muted-foreground">Control Room{params.controlRooms > 1 ? 's' : ''}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-purple-400">{params.debriefRooms}</div>
-                  <div className="text-xs text-slate-400">Debrief Room{params.debriefRooms > 1 ? 's' : ''}</div>
+                  <div className="text-xs text-muted-foreground">Debrief Room{params.debriefRooms > 1 ? 's' : ''}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-amber-400">{staticStats.timelineMonths}</div>
-                  <div className="text-xs text-slate-400">Months to Go-Live</div>
+                  <div className="text-xs text-muted-foreground">Months to Go-Live</div>
                 </div>
               </div>
             </div>

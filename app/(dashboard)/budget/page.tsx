@@ -113,12 +113,12 @@ export default function BudgetSimulatorPage() {
   }))
 
   return (
-    <div className="min-h-screen bg-slate-900 -m-6 p-6">
+    <div className="min-h-screen bg-background -m-6 p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-white">Budget Simulator</h1>
-          <p className="text-slate-400 text-sm">
+          <p className="text-muted-foreground text-sm">
             Interactive cost modeling with real-time CAPEX and OPEX calculations
           </p>
         </div>
@@ -341,7 +341,7 @@ export default function BudgetSimulatorPage() {
           {/* Advanced Parameters */}
           <SliderGroup
             title="Advanced"
-            icon={<Settings2 className="h-4 w-4 text-slate-400" />}
+            icon={<Settings2 className="h-4 w-4 text-muted-foreground" />}
             defaultOpen={false}
           >
             <OptionButtonGroup
@@ -391,7 +391,7 @@ export default function BudgetSimulatorPage() {
         {/* Right Panel: Visualizations */}
         <div className="lg:col-span-3">
           <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList className="bg-slate-800 border border-slate-700">
+            <TabsList className="bg-muted border border-border">
               <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600">
                 <PieChartIcon className="h-4 w-4 mr-2" />
                 Overview
@@ -418,7 +418,7 @@ export default function BudgetSimulatorPage() {
             <TabsContent value="overview" className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 {/* CAPEX Pie */}
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                <div className="bg-card border border-border rounded-lg p-4">
                   <h3 className="text-sm font-semibold text-white mb-2">CAPEX Distribution</h3>
                   <ResponsiveContainer width="100%" height={220}>
                     <PieChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
@@ -446,19 +446,19 @@ export default function BudgetSimulatorPage() {
                     {capexPieData.map((entry, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <div className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: entry.color }} />
-                        <span className="text-xs text-slate-300 truncate">{entry.name}</span>
+                        <span className="text-xs text-muted-foreground truncate">{entry.name}</span>
                         <span className="text-xs text-slate-500 ml-auto">{((entry.value / results.capex.total) * 100).toFixed(0)}%</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 pt-3 border-t border-slate-700 text-center">
+                  <div className="mt-3 pt-3 border-t border-border text-center">
                     <span className="text-2xl font-bold text-white">{formatCurrency(results.capex.net)}</span>
-                    <span className="text-sm text-slate-400 ml-2">Net CAPEX</span>
+                    <span className="text-sm text-muted-foreground ml-2">Net CAPEX</span>
                   </div>
                 </div>
 
                 {/* OPEX Pie */}
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                <div className="bg-card border border-border rounded-lg p-4">
                   <h3 className="text-sm font-semibold text-white mb-2">Annual OPEX Distribution</h3>
                   <ResponsiveContainer width="100%" height={220}>
                     <PieChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
@@ -486,27 +486,27 @@ export default function BudgetSimulatorPage() {
                     {opexPieData.map((entry, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <div className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: entry.color }} />
-                        <span className="text-xs text-slate-300 truncate">{entry.name}</span>
+                        <span className="text-xs text-muted-foreground truncate">{entry.name}</span>
                         <span className="text-xs text-slate-500 ml-auto">{((entry.value / results.opex.annual) * 100).toFixed(0)}%</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 pt-3 border-t border-slate-700 text-center">
+                  <div className="mt-3 pt-3 border-t border-border text-center">
                     <span className="text-2xl font-bold text-white">{formatCurrency(results.opex.annual)}</span>
-                    <span className="text-sm text-slate-400 ml-2">per year</span>
+                    <span className="text-sm text-muted-foreground ml-2">per year</span>
                   </div>
                 </div>
               </div>
 
               {/* Scenario Comparison */}
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <h3 className="text-sm font-semibold text-white mb-4">Scenario Comparison</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {scenarioComparison.map(({ scenario, results: scenarioResults, deltaFromCurrent }) => (
                     <button
                       key={scenario.id}
                       onClick={() => applyScenario(scenario.id)}
-                      className="p-3 bg-slate-700/50 hover:bg-slate-700 border border-slate-600 rounded-lg text-left transition-colors"
+                      className="p-3 border-border bg-accent border border-border rounded-lg text-left transition-colors"
                     >
                       <div className="text-sm font-medium text-white">{scenario.name}</div>
                       <div className="text-lg font-bold text-blue-400 mt-1">
@@ -515,7 +515,7 @@ export default function BudgetSimulatorPage() {
                       <div className={`text-xs mt-1 ${
                         deltaFromCurrent > 0 ? 'text-red-400' :
                         deltaFromCurrent < 0 ? 'text-emerald-400' :
-                        'text-slate-400'
+                        'text-muted-foreground'
                       }`}>
                         {deltaFromCurrent !== 0 && (deltaFromCurrent > 0 ? '+' : '')}
                         {deltaFromCurrent !== 0 ? formatCurrency(deltaFromCurrent) : 'Current'}
@@ -528,7 +528,7 @@ export default function BudgetSimulatorPage() {
 
             {/* CAPEX Tab */}
             <TabsContent value="capex" className="space-y-4">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <h3 className="text-sm font-semibold text-white mb-4">CAPEX Line Items</h3>
                 <div className="space-y-1">
                   {results.capex.lineItems.map((item) => (
@@ -542,7 +542,7 @@ export default function BudgetSimulatorPage() {
                       formatCurrency={formatCurrencyFull}
                     />
                   ))}
-                  <div className="border-t-2 border-slate-600 pt-3 mt-3">
+                  <div className="border-t-2 border-border pt-3 mt-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-white">Net CAPEX</span>
                       <span className="text-lg font-bold text-blue-400">{formatCurrencyFull(results.capex.net)}</span>
@@ -552,7 +552,7 @@ export default function BudgetSimulatorPage() {
               </div>
 
               {/* CAPEX Bar Chart */}
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <h3 className="text-sm font-semibold text-white mb-4">Cost by Category</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart
@@ -579,10 +579,10 @@ export default function BudgetSimulatorPage() {
 
             {/* OPEX Tab */}
             <TabsContent value="opex" className="space-y-4">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-semibold text-white">Annual OPEX Line Items</h3>
-                  <span className="text-xs text-slate-400 px-2 py-1 bg-slate-700 rounded">
+                  <span className="text-xs text-muted-foreground px-2 py-1 bg-muted rounded">
                     {params.opexModel === 'room-based' ? 'Room-Based Model' : 'Sessions-Based Model'}
                   </span>
                 </div>
@@ -597,14 +597,14 @@ export default function BudgetSimulatorPage() {
                       formatCurrency={formatCurrencyFull}
                     />
                   ))}
-                  <div className="border-t-2 border-slate-600 pt-3 mt-3">
+                  <div className="border-t-2 border-border pt-3 mt-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-white">Total Annual OPEX</span>
                       <span className="text-lg font-bold text-emerald-400">{formatCurrencyFull(results.opex.annual)}</span>
                     </div>
                     <div className="flex items-center justify-between mt-1">
-                      <span className="text-xs text-slate-400">Monthly</span>
-                      <span className="text-sm text-slate-300">{formatCurrencyFull(results.opex.monthly)}</span>
+                      <span className="text-xs text-muted-foreground">Monthly</span>
+                      <span className="text-sm text-muted-foreground">{formatCurrencyFull(results.opex.monthly)}</span>
                     </div>
                   </div>
                 </div>
@@ -612,24 +612,24 @@ export default function BudgetSimulatorPage() {
 
               {/* Key OPEX Metrics */}
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                <div className="bg-card border border-border rounded-lg p-4 text-center">
                   <div className="text-2xl font-bold text-white">{formatCurrency(results.metrics.costPerSession)}</div>
-                  <div className="text-xs text-slate-400 mt-1">Cost per Session</div>
+                  <div className="text-xs text-muted-foreground mt-1">Cost per Session</div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                <div className="bg-card border border-border rounded-lg p-4 text-center">
                   <div className="text-2xl font-bold text-white">{formatCurrency(results.metrics.costPerLearnerHour)}</div>
-                  <div className="text-xs text-slate-400 mt-1">Cost per Learner Hour</div>
+                  <div className="text-xs text-muted-foreground mt-1">Cost per Learner Hour</div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                <div className="bg-card border border-border rounded-lg p-4 text-center">
                   <div className="text-2xl font-bold text-white">{results.metrics.annualSessions.toLocaleString()}</div>
-                  <div className="text-xs text-slate-400 mt-1">Sessions per Year</div>
+                  <div className="text-xs text-muted-foreground mt-1">Sessions per Year</div>
                 </div>
               </div>
             </TabsContent>
 
             {/* 5-Year Projection Tab */}
             <TabsContent value="projection" className="space-y-4">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <h3 className="text-sm font-semibold text-white mb-4">5-Year Cost Projection</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={fiveYearChartData}>
@@ -648,32 +648,32 @@ export default function BudgetSimulatorPage() {
               </div>
 
               {/* Year-by-Year Table */}
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="bg-card border border-border rounded-lg p-4">
                 <h3 className="text-sm font-semibold text-white mb-4">Year-by-Year Breakdown</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-slate-700">
-                        <th className="text-left py-2 text-slate-400 font-medium">Year</th>
-                        <th className="text-right py-2 text-slate-400 font-medium">CAPEX</th>
-                        <th className="text-right py-2 text-slate-400 font-medium">OPEX</th>
-                        <th className="text-right py-2 text-slate-400 font-medium">Total</th>
-                        <th className="text-right py-2 text-slate-400 font-medium">Sessions</th>
-                        <th className="text-right py-2 text-slate-400 font-medium">$/Session</th>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 text-muted-foreground font-medium">Year</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">CAPEX</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">OPEX</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Total</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Sessions</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">$/Session</th>
                       </tr>
                     </thead>
                     <tbody>
                       {results.fiveYear.yearByYear.map((year) => (
-                        <tr key={year.year} className="border-b border-slate-700/50">
+                        <tr key={year.year} className="border-b border-border/50">
                           <td className="py-2 text-white font-medium">{year.label}</td>
                           <td className="py-2 text-right text-blue-400">{formatCurrency(year.capex)}</td>
                           <td className="py-2 text-right text-emerald-400">{formatCurrency(year.opex)}</td>
                           <td className="py-2 text-right text-white font-medium">{formatCurrency(year.total)}</td>
-                          <td className="py-2 text-right text-slate-300">{year.sessionsPerYear.toLocaleString()}</td>
+                          <td className="py-2 text-right text-muted-foreground">{year.sessionsPerYear.toLocaleString()}</td>
                           <td className="py-2 text-right text-amber-400">{formatCurrency(year.costPerSession)}</td>
                         </tr>
                       ))}
-                      <tr className="border-t-2 border-slate-600 bg-slate-800/30">
+                      <tr className="border-t-2 border-border bg-muted/30">
                         <td className="py-3 text-white font-bold">5-Year Total</td>
                         <td className="py-3 text-right text-blue-400 font-bold">{formatCurrency(results.fiveYear.totalCapex)}</td>
                         <td className="py-3 text-right text-emerald-400 font-bold">{formatCurrency(results.fiveYear.totalOpex)}</td>
@@ -710,9 +710,9 @@ export default function BudgetSimulatorPage() {
               <ROIAssetTable />
 
               {/* Evidence Note */}
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4">
+              <div className="bg-muted/30 border border-border rounded-lg p-4">
                 <h4 className="text-sm font-medium text-white mb-2">About These Projections</h4>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-muted-foreground">
                   ROI calculations are based on peer-reviewed research and industry reports including the NSI 2025
                   National Health Care Retention Report, AHRQ patient safety studies, and CDC infection prevention
                   data. Click on any citation badge to view source details. Actual results may vary based on
